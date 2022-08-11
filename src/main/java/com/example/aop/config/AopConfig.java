@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class AopConfig {
 
     @Around("execution(* com.example.aop.service.EventService.*(..))")
-    public Object logPerf(ProceedingJoinPoint pjp) throws Throwable {
+    public Object calculateProcessTime(ProceedingJoinPoint pjp) throws Throwable {
         long begin = System.currentTimeMillis();
         Object retVal = pjp.proceed();
         System.out.println(System.currentTimeMillis() - begin);
