@@ -1,5 +1,6 @@
 package com.example.aop.service.impl;
 
+import com.example.aop.annotation.ProcessTimeLogging;
 import com.example.aop.service.EventService;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class EventServiceImpl implements EventService {
 
     @Override
+    @ProcessTimeLogging
     public void createEvent() {
         try {
             Thread.sleep(1000);
@@ -17,6 +19,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @ProcessTimeLogging
     public void publishEvent() {
         try {
             Thread.sleep(1000);
@@ -27,6 +30,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @ProcessTimeLogging
     public void deleteEvent() {
         System.out.println("Delete an event");
     }
