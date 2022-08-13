@@ -1,4 +1,4 @@
-package com.example.aop;
+package com.example.aop.runner;
 
 import com.example.aop.service.EventService;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AopApplicationRunner implements ApplicationRunner {
+public class EventServiceAopApplicationRunner implements ApplicationRunner {
 
     private final EventService eventService;
 

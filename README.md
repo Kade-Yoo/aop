@@ -18,7 +18,39 @@
 
 ## Proxy
 - 클라이언트가 사용하려는 Target으로 위장하여 요청을 받는 곳
-- 프록시 객체에 트랜잭션 등 부가 기능 관련 로직을 위치시키고, 클라이언트 요청이 발생하면 실제 타깃 객체는 프록시로부터 요청을 위임받아 핵심 비즈니스 로직을 실행
+- 프록시 객체에 트랜잭션 등 부가 기능 관련 로직을 위치시키고, 클라이언트 요청이 발생하면 실제 타깃 객체는 프록시로부터 요청을 위임받아 핵심 비즈니스 로직을 실행  
+  
+### @Transcational 예제
+```
+public class TransactionalEventServiceProxy implements TransactionalEventService {
+
+    private final TransactionalEventService service;
+
+    public TransactionalEventServiceProxy(TransactionalEventService service) {
+        this.service = service;
+    }
+
+    @Override
+    public void getUserById(String id) {
+        // DB 커넥션
+        System.out.println("DB Connection");
+        try {
+            service.getUserById(id);
+            // DB commit
+            System.out.println("DB Commit");
+        } catch (RuntimeException e) {
+            // DB rollback
+            System.out.println("DB Rollback");
+        }
+    }
+}
+```
+- Commit 결과
+
+![Commit 결과](src/main/resources/img/transactional_commit.png)
+- Rollback 결과
+
+![Commit 결과](src/main/resources/img/transactional_rollback.png)
 
 ## 구성
 ### Target
@@ -56,3 +88,4 @@ public Object calculateProcessTime(ProceedingJoinPoint pjp) throws Throwable {
 
 ## Next Study
 - Annotation 구성 방법
+- Decoration Pattern

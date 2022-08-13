@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class AopConfig {
+public class ProcessTimeLoggingAspect {
 
     @Around(value = "execution(* com.example.aop.service.EventService.*(..))")
     public Object calculateProcessTime(ProceedingJoinPoint pjp) throws Throwable {
