@@ -1,7 +1,6 @@
 package com.example.aop.config;
 
 
-import com.example.aop.annotation.ProcessTimeLogging;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
